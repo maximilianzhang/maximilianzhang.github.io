@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Maximilian的笔记本">
 <meta property="og:description" content="Union-Find">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-02T19:27:43.513Z">
+<meta property="og:updated_time" content="2017-11-02T19:58:15.743Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Princeton University Algorithms, part 1, Week 1 Lecture notes">
 <meta name="twitter:description" content="Union-Find">
@@ -324,7 +324,14 @@
 <li>Implement Union</li>
 <li>Implement Connected</li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class UF</div><div class="line">  UF(int N) // initialize union-find data structure with N objects(0 to N-1)</div><div class="line">  void union(int p, int q) // add connections between p and q</div><div class="line">  boolean connected(int p, int q) // check if p and q are in the same components</div><div class="line">  int find(int p) // compoment finder for object p(0 to N-1)</div><div class="line">  int count() // number of components</div></pre></td></tr></table></figure>
 <p>Constructor: Takes the number of objects as the argument</p>
+<h4 id="Client-to-check-API"><a href="#Client-to-check-API" class="headerlink" title="Client to check API"></a>Client to check API</h4><p>Read in numbers of objects N from standard input<br>Repeat:</p>
+<ul>
+<li>read in pair of integers from standard input.</li>
+<li>if they are not connected, connect them and print out pair</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public static void main (String[] args)</div><div class="line">&#123;</div><div class="line">  int N = StdIn.readInt();</div><div class="line">  UF uf = new UF(N);</div><div class="line">  while (!StdIn.isEmpty())</div><div class="line">  &#123;</div><div class="line">  int p = StdIn.readInt();</div><div class="line">  int q = StdIn.readInt();</div><div class="line">  if(!uf.connected(p, q))</div><div class="line">    &#123;</div><div class="line">      uf.union(p, q);</div><div class="line">      StdOut.println(p + &quot; &quot; + q);    </div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -492,7 +499,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Union-Find"><span class="nav-number">1.</span> <span class="nav-text">Union-Find</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-Connectivity"><span class="nav-number">1.1.</span> <span class="nav-text">Dynamic Connectivity</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Given-a-set-of-N-objects"><span class="nav-number">1.1.1.</span> <span class="nav-text">Problem: Given a set of N objects</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Modeling-the-connections"><span class="nav-number">1.1.2.</span> <span class="nav-text">Modeling the connections</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Implementing-the-operations"><span class="nav-number">1.1.3.</span> <span class="nav-text">Implementing the operations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Union-Find-API"><span class="nav-number">1.1.4.</span> <span class="nav-text">Union-Find API</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Union-Find"><span class="nav-number">1.</span> <span class="nav-text">Union-Find</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-Connectivity"><span class="nav-number">1.1.</span> <span class="nav-text">Dynamic Connectivity</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Given-a-set-of-N-objects"><span class="nav-number">1.1.1.</span> <span class="nav-text">Problem: Given a set of N objects</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Modeling-the-connections"><span class="nav-number">1.1.2.</span> <span class="nav-text">Modeling the connections</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Implementing-the-operations"><span class="nav-number">1.1.3.</span> <span class="nav-text">Implementing the operations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Union-Find-API"><span class="nav-number">1.1.4.</span> <span class="nav-text">Union-Find API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Client-to-check-API"><span class="nav-number">1.1.5.</span> <span class="nav-text">Client to check API</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
