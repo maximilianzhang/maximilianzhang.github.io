@@ -7,7 +7,7 @@
 
 <html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -126,7 +126,7 @@
 
 
 
-  <title>Princeton University Algorithms, part 1, Week 1 Lecture notes | Maximilian的笔记本</title>
+  <title>Princeton University Algorithms, part 1, Week 1 Lecture notes | Maximilian的笔记本</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -145,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -337,6 +337,7 @@
 <li>Interpretation: p and q are connected iff (if and only if) they have the same id.</li>
 </ul>
 <p>Example:</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -369,6 +370,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>We can see that object 0, 5, 6 are connected, object 1, 2, 7 are connected and object 3, 4, 8, 9 are connected.</p>
 <h4 id="Find-operation-is-very-fast"><a href="#Find-operation-is-very-fast" class="headerlink" title="Find operation is very fast"></a>Find operation is very fast</h4><p>Check if p and q have the same id.<br>Example: id[6] = 0 while id[7] = 1 so object 6 and 1 are not connected.</p>
 <h4 id="Union-operation-is-difficult"><a href="#Union-operation-is-difficult" class="headerlink" title="Union operation is difficult"></a>Union operation is difficult</h4><p>To merge components containing p and q, change all entries whose id equals to id[p] to id[q] (or change id[q] to id[p]).<br>Problem: many values can change</p>
@@ -742,6 +744,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
 
   
 
