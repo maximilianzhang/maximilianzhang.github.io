@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Princeton, Algorithms," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,15 +79,21 @@
 
 
 
-<meta name="keywords" content="Princeton, Algorithms">
+<meta name="description" content="title: ‘Princeton University Algorithms, part 1, Assignment 1’date: 2017-11-11 21:09:32tags: Princeton, Algorithms  作业1. 渗透模型(Percolation.java) 研究主体是一个渗透模型，即对与一个给定大小的节点组成的网络，判断该网络是否被渗透。  可以形象的理解为在把一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Princeton University Algorithms, part 1, Assignment 1">
+<meta property="og:title" content="Maximilian的笔记本">
 <meta property="og:url" content="http://yoursite.com/2017/11/02/Princeton-University-Algorithms-part1-Assignment-1/index.html">
 <meta property="og:site_name" content="Maximilian的笔记本">
+<meta property="og:description" content="title: ‘Princeton University Algorithms, part 1, Assignment 1’date: 2017-11-11 21:09:32tags: Princeton, Algorithms  作业1. 渗透模型(Percolation.java) 研究主体是一个渗透模型，即对与一个给定大小的节点组成的网络，判断该网络是否被渗透。  可以形象的理解为在把一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-02T19:28:05.311Z">
+<meta property="og:image" content="http://yoursite.com/image/percolates-yes.png">
+<meta property="og:image" content="http://yoursite.com/image/percolates-no.png">
+<meta property="og:image" content="http://yoursite.com/image/percolation_backwash.png">
+<meta property="og:updated_time" content="2017-11-11T20:10:16.326Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Princeton University Algorithms, part 1, Assignment 1">
+<meta name="twitter:title" content="Maximilian的笔记本">
+<meta name="twitter:description" content="title: ‘Princeton University Algorithms, part 1, Assignment 1’date: 2017-11-11 21:09:32tags: Princeton, Algorithms  作业1. 渗透模型(Percolation.java) 研究主体是一个渗透模型，即对与一个给定大小的节点组成的网络，判断该网络是否被渗透。  可以形象的理解为在把一">
+<meta name="twitter:image" content="http://yoursite.com/image/percolates-yes.png">
 
 
 
@@ -123,7 +129,7 @@
 
 
 
-  <title>Princeton University Algorithms, part 1, Assignment 1 | Maximilian的笔记本</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> | Maximilian的笔记本</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -247,7 +253,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Princeton University Algorithms, part 1, Assignment 1</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -259,7 +265,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-02T15:26:32+01:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-02T10:26:32+01:00">
                 2017-11-02
               </time>
             
@@ -297,7 +303,51 @@
       
 
       
-        <a id="more"></a>
+        <ol>
+<li><hr>
+title: ‘Princeton University Algorithms, part 1, Assignment 1’<br>date: 2017-11-11 21:09:32<h2 id="tags-Princeton-Algorithms"><a href="#tags-Princeton-Algorithms" class="headerlink" title="tags: Princeton, Algorithms"></a>tags: Princeton, Algorithms</h2></li>
+</ol>
+<h3 id="作业1-渗透模型-Percolation-java"><a href="#作业1-渗透模型-Percolation-java" class="headerlink" title="作业1. 渗透模型(Percolation.java)"></a>作业1. 渗透模型(Percolation.java)</h3><ul>
+<li><p>研究主体是一个渗透模型，即对与一个给定大小的节点组成的网络，判断该网络是否被渗透。</p>
+</li>
+<li><p>可以形象的理解为在把一个 $n\times{n}$ 个节点组成的网络浸入瀑布中，每一个节点有两种状态：打开或者关闭。</p>
+</li>
+<li><p>水从高到低进行流动，可以通过一个打开的节点进入其相邻的打开的节点中。</p>
+</li>
+<li><p>如果网络第一排没有任何一个节点打开，那么没有水流能进入网络，即没有发生渗透。</p>
+</li>
+<li><p>如果能找到一条打开通路连接第一排和最后一排，那么这个网络就被渗透了。考察的主要是对Union-Find和应用。</p>
+<p>​</p>
+</li>
+</ul>
+<p>渗透例子：</p>
+<p><img src="/image/percolates-yes.png" width="50%" height="50%"></p>
+<a id="more"></a>
+<p>未渗透例子：</p>
+<p><img src="/image/percolates-no.png" width="50%" height="50%"></p>
+<p>这次作业想要通过容易，但是想要拿满分比较麻烦。对于Percolation.java，需要实现两个最重要的功能是：</p>
+<ol>
+<li>判断这个网络是否被渗透。</li>
+<li>判断某一个节点是否被渗透（设施打开且与第一排之间有通路）。这里不得不吐槽一下在作业的规范描述中，用的是full这个单词，第一次看的时候看得不仔细没有明白这个full的意思，先来想来，大概跟充满水差不多吧。</li>
+</ol>
+<h3 id="第一想法"><a href="#第一想法" class="headerlink" title="第一想法"></a>第一想法</h3><p>一个通常的想法就是创造两个虚拟节点，分别叫做Top和Bottom，在构造这个渗透模型的时候把Top先和第一个排的所有节点相连，把Bottom和最后一排的节点相连。当判断这个网络是否被渗透的时候只需要看Top和Bottom是否相连就可以了，判断某一位置个节点是否被渗透的时候，判断该位置和Top是否相连。一切看上去都不错，然而当用这个办法来判断某一个节点是否被渗透的时候会出现问题。</p>
+<h4 id="backwash-问题"><a href="#backwash-问题" class="headerlink" title="backwash 问题"></a>backwash 问题</h4><p>当判断一个具体位置的格子是否被渗透时，有两种情况：</p>
+<ol>
+<li>此时整个网络没有被渗透，得到的结果是正确的。</li>
+<li>此时整个网络已经被渗透，得到了错误的结果。因为此时整个网络被渗透，那么Top已经和Bottom相连，所以判断某一个具体位置节点是否被渗透的时候，得到的“是”的结果包括了两个部分，一个是和Top相连的，一个是和Bottom相连的，然而事实上后面一种是错误的。如图：</li>
+</ol>
+<p><img src="/image/percolation_backwash.png" width="50%" height="50%"></p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>网上应该有两种解决办法，核心在于多用一组数组或者两组数组来表示该节点是否与顶部相连，是否与底部相连。其实这两种都差不多，只是因为使用的数据结构“WeightedQuickUnionUF”有方法“connected”来判断两个节点是否联通，太方便了，因此舍不得弃之不用。所以我用的就是只用一组数组的形式：</p>
+<ol>
+<li>创造一个大小为$n\times{n}+1$的WeightedQuickUnionUF结构，多出的那一个节点我们命名为Top，在构造渗透模型的时候将第一排的节点与之相连。那么在判断某个具体位置节点是否被渗透时，直接利用“connected”方法判断Top与该节点是否相连。</li>
+<li>创造一个大小为$n\times{n}+1$新的布尔值数组，命名为connectedToBottom，用来存储每一个节点是否与底部相连。那么在判断整个网络是否被渗透的时候，看与Top相连的节点中有没有一个节点在connectedToBottom数组中的值为true。</li>
+<li>在实现渗透模型“open”方法的时候需要注意，首先判断输入的行列的值是否有效，无效报Exception。然后检查这个位置的节点，命名为Current，是否已经被打开，进行相应操作。检查输入的行值是否为n（即是不在在打开最后一排的节点），如果是，则将Current在connectedToBottom数组中的对应位置的值设为true。接下来对其上下左右（如果存在的话，分别命名为Up，Down，Left，Right）的节点进行两种检查：<ol>
+<li>该节点比如说Up，是否被打开，如果打开那么需要在WeightedQuickUnionUF结构中连接相应的节点，但是在连接前需要再一步的判断。</li>
+<li>判断将要进行连接的两个节点，比如说Up和Current之间是否存在一个节点与底部相连（connectedToBottom数组对应值为true），如果有，那么需要将Up和Current的根节点在connectedToBottom数组中的对应位置都分别设置为true。</li>
+</ol>
+</li>
+</ol>
+<h3 id="举一反三"><a href="#举一反三" class="headerlink" title="举一反三"></a>举一反三</h3><p>那么可以看到，用一个数组就可以少用一个虚拟节点，所以也可以不使用虚拟节点再多使用一组数组来判断是否与Top相连。如果想要更加极端的话，甚至可以使用位操作，将这些数组的职能用位操作来替代，实质上也是只用了一组长度为$n\times{n}$的数组。</p>
 
       
     </div>
@@ -313,12 +363,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Princeton-Algorithms/" rel="tag"># Princeton, Algorithms</a>
-          
-        </div>
-      
 
       
       
@@ -328,8 +372,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/02/Princeton-University-Algorithms-part-1-Lecture-notes/" rel="next" title="Princeton University Algorithms, part 1, Week 1 Lecture notes">
-                <i class="fa fa-chevron-left"></i> Princeton University Algorithms, part 1, Week 1 Lecture notes
+              <a href="/2017/11/02/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -337,6 +381,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/02/Princeton-University-Algorithms-part-1-Lecture-notes/" rel="prev" title="Princeton University Algorithms, part 1, Week 1 Lecture notes">
+                Princeton University Algorithms, part 1, Week 1 Lecture notes <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -388,8 +436,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -442,6 +499,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags-Princeton-Algorithms"><span class="nav-number">1.</span> <span class="nav-text">tags: Princeton, Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作业1-渗透模型-Percolation-java"><span class="nav-number">1.1.</span> <span class="nav-text">作业1. 渗透模型(Percolation.java)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第一想法"><span class="nav-number">1.2.</span> <span class="nav-text">第一想法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#backwash-问题"><span class="nav-number">1.2.1.</span> <span class="nav-text">backwash 问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决办法"><span class="nav-number">1.3.</span> <span class="nav-text">解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举一反三"><span class="nav-number">1.4.</span> <span class="nav-text">举一反三</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
