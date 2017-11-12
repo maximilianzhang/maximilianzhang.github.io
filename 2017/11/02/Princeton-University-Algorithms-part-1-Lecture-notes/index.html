@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Maximilian的笔记本">
 <meta property="og:description" content="Union-FindDynamic ConnectivityProblem: Given a set of N objects Union command: connect two objects. Find/connected query: is there a path connecting the two objects?">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-07T12:31:31.153Z">
+<meta property="og:updated_time" content="2017-11-12T13:48:41.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Princeton University Algorithms, part 1, Week 1 Lecture notes">
 <meta name="twitter:description" content="Union-FindDynamic ConnectivityProblem: Given a set of N objects Union command: connect two objects. Find/connected query: is there a path connecting the two objects?">
@@ -353,7 +353,7 @@
 </thead>
 <tbody>
 <tr>
-<td> id []</td>
+<td>id []</td>
 <td>0</td>
 <td>1</td>
 <td>1</td>
@@ -449,6 +449,115 @@
 </tbody>
 </table>
 </div>
+<h2 id="Analysis-of-algorithms"><a href="#Analysis-of-algorithms" class="headerlink" title="Analysis of algorithms"></a>Analysis of algorithms</h2><h3 id="Analysis-of-algorithms-Introduction"><a href="#Analysis-of-algorithms-Introduction" class="headerlink" title="Analysis of algorithms Introduction"></a>Analysis of algorithms Introduction</h3><p>Reasons to analyze algorithms:</p>
+<ul>
+<li>Predict performance.</li>
+<li>Compare algorithms.</li>
+<li>Provide guarantees.</li>
+<li>Understand theoretical basis.</li>
+</ul>
+<p>Primary practical reason: <strong>Avoid performance bugs</strong>.</p>
+<p>Successful Example: Discrete Fourier Transform:</p>
+<ul>
+<li>Brute force: $N^{2}$ steps.</li>
+<li>FFT algorithm: $NlogN$ steps, enables to solve a huge problem.</li>
+</ul>
+<p>Scientific method applied to analysis of algorithms</p>
+<ul>
+<li><strong>Observe</strong> some feature of natural world.</li>
+<li><strong>Hypothesize</strong> a model that is consistent  with the observations.</li>
+<li><strong>Predict</strong> events using the hypothesis.</li>
+<li><strong>Verify</strong> the predictions by making further observations.</li>
+<li><strong>Validate</strong> by repeating until the hypothesis and observations agree.</li>
+</ul>
+<p>Principles:</p>
+<ul>
+<li>Experiments must be <strong>reproducible</strong>.</li>
+<li>Hypotheses must be <strong>falsifiable</strong>.</li>
+</ul>
+<h3 id="Observations"><a href="#Observations" class="headerlink" title="Observations"></a>Observations</h3><h4 id="Example-3-SUM"><a href="#Example-3-SUM" class="headerlink" title="Example: 3-SUM"></a>Example: 3-SUM</h4><p><strong>Given</strong> N distinct integers, how many triples sum exactly to zero?</p>
+<p>This is a problem deeply related to problems in computational geometry.</p>
+<p><strong>Brute-force algorithm</strong>: using 3 for loop and return the count.</p>
+<p>How much time does it cost? Use Stopwatch class in java to count the elapsed time.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">N</th>
+<th style="text-align:center">time(seconds)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">250</td>
+<td style="text-align:center">0.0</td>
+</tr>
+<tr>
+<td style="text-align:center">500</td>
+<td style="text-align:center">0.0</td>
+</tr>
+<tr>
+<td style="text-align:center">1000</td>
+<td style="text-align:center">0.1</td>
+</tr>
+<tr>
+<td style="text-align:center">2000</td>
+<td style="text-align:center">0.8</td>
+</tr>
+<tr>
+<td style="text-align:center">4000</td>
+<td style="text-align:center">6.4</td>
+</tr>
+<tr>
+<td style="text-align:center">8000</td>
+<td style="text-align:center">51.1</td>
+</tr>
+<tr>
+<td style="text-align:center">16000</td>
+<td style="text-align:center">?</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Data analysis:</p>
+<p>Log-log plot: Plot running time T(N) vs. input size N using log-log scale. And now the slop of this line is very important.</p>
+<p>Regression: Fit straight line through data points: $aN^{b}$, where $b$ is the slop of the log-log plot.</p>
+<p>Hypothesis: The running time is about $1.006\times{10^{-10}}\times{N^{2.999}}$ seconds.</p>
+<p>Predictions: 51.0 seconds for $N=8000$, 408.1 seconds for $N=16000$.</p>
+<p>Validation: for $N=8000$, running time is around 51.0 seconds, for $N=16000$, running time is around 410.8 seconds.</p>
+<p><strong>Doubling hypothesis</strong>: Quick way to estimate $b$ in a power-lay relationship.</p>
+<p>Double the size of input, the running time ration between bigger and smaller will converge to $2^{b}$.</p>
+<p><strong>Once b is determined, run the program (for a sufficient large value of N) and solve for a.</strong></p>
+<h4 id="Experimental-algorithms"><a href="#Experimental-algorithms" class="headerlink" title="Experimental algorithms"></a>Experimental algorithms</h4><p><strong>System independent effects (Determine exponent $b$ in power law)</strong>:</p>
+<ul>
+<li>Algorithms</li>
+<li>Input data</li>
+</ul>
+<p><strong>System dependent effects (Determine the constant $a$ in power law together with above effects)</strong>:</p>
+<ul>
+<li>Hardware: CPU, memory, cache, …</li>
+<li>Software: compiler, interpreter, garbage collector, …</li>
+<li>System: operating system, network, other apps, …</li>
+</ul>
+<p>Bad news: Difficult to get the precise measurement.</p>
+<p>Good news: Much easier and cheaper than other sciences (Just run huge number of experiments).</p>
+<h3 id="Mathematical-Models"><a href="#Mathematical-Models" class="headerlink" title="Mathematical Models"></a>Mathematical Models</h3><p><strong>Total running time:</strong> sum of <strong>cost</strong> $\times$ <strong>frequency</strong> for all operations.</p>
+<ul>
+<li>Need to analyze program to determine set of operations.</li>
+<li><strong>Cost</strong> depends on machine, compiler.</li>
+<li><strong>Frequency</strong> depends on algorithm, input data.</li>
+</ul>
+<p><strong>Simplification 1:</strong> Consider only the most expensive operations.</p>
+<p><strong>Simplification 2:</strong> Tilde notation, discard low order terms.</p>
+<p><strong>Estimating of discrete sum:</strong></p>
+<ul>
+<li>$1 + 2 + … + N \sim \frac{1}{2}N^{2}$</li>
+<li>$1 + \frac{1}{2} + … + \frac{1}{N} \sim \ln{N}$</li>
+<li>3-sum triple loop $\sim \frac{1}{6}N^{3}$</li>
+</ul>
+<h3 id="Order-of-growth-classifications"><a href="#Order-of-growth-classifications" class="headerlink" title="Order-of-growth classifications"></a>Order-of-growth classifications</h3><p><strong>Good news:</strong> the small set of functions</p>
+<script type="math/tex; mode=display">
+1, \log{N}, N, N\log{N}, N^{2}, N^{3}, 2^{N}</script><p>suffices to describe order-of-growth of typical algorithms</p>
 
       
     </div>
@@ -478,10 +587,6 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/11/02/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
             
           </div>
 
@@ -568,7 +673,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -616,7 +721,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Union-Find"><span class="nav-number">1.</span> <span class="nav-text">Union-Find</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-Connectivity"><span class="nav-number">1.1.</span> <span class="nav-text">Dynamic Connectivity</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Given-a-set-of-N-objects"><span class="nav-number">1.1.1.</span> <span class="nav-text">Problem: Given a set of N objects</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Modeling-the-connections"><span class="nav-number">1.1.2.</span> <span class="nav-text">Modeling the connections</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Implementing-the-operations"><span class="nav-number">1.1.3.</span> <span class="nav-text">Implementing the operations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Union-Find-API"><span class="nav-number">1.1.4.</span> <span class="nav-text">Union-Find API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Client-to-check-API"><span class="nav-number">1.1.5.</span> <span class="nav-text">Client to check API</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quick-Find-eager-approach"><span class="nav-number">1.2.</span> <span class="nav-text">Quick-Find[eager approach]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-structure"><span class="nav-number">1.2.1.</span> <span class="nav-text">Data structure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Find-operation-is-very-fast"><span class="nav-number">1.2.2.</span> <span class="nav-text">Find operation is very fast</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Union-operation-is-difficult"><span class="nav-number">1.2.3.</span> <span class="nav-text">Union operation is difficult</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Quick-Find-Java-Implementation"><span class="nav-number">1.2.4.</span> <span class="nav-text">Quick-Find: Java Implementation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Quick-Find-is-too-slow"><span class="nav-number">1.2.5.</span> <span class="nav-text">Quick-Find is too slow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Quadratic-algorithms-do-not-scale-with-technology"><span class="nav-number">1.2.6.</span> <span class="nav-text">Quadratic algorithms do not scale with technology</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quick-Union-lazy-approach"><span class="nav-number">1.3.</span> <span class="nav-text">Quick Union [lazy approach]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Quick-Union-Java-Implementation"><span class="nav-number">1.3.1.</span> <span class="nav-text">Quick Union: Java Implementation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Quick-Union-is-also-too-slow"><span class="nav-number">1.3.2.</span> <span class="nav-text">Quick Union is also too slow</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Improvements"><span class="nav-number">1.4.</span> <span class="nav-text">Improvements</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Improvement-1-Weighting"><span class="nav-number">1.4.1.</span> <span class="nav-text">Improvement 1: Weighting</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Weighted-Quick-Union-Java-Implementation"><span class="nav-number">1.4.2.</span> <span class="nav-text">Weighted Quick Union: Java Implementation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Weighted-Quick-Union-Analysis"><span class="nav-number">1.4.3.</span> <span class="nav-text">Weighted Quick Union: Analysis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Improvement-2-Path-compression"><span class="nav-number">1.4.4.</span> <span class="nav-text">Improvement 2: Path compression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Path-compression-Java-Implementation"><span class="nav-number">1.4.5.</span> <span class="nav-text">Path compression: Java Implementation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Summary"><span class="nav-number">1.5.</span> <span class="nav-text">Summary</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Union-Find"><span class="nav-number">1.</span> <span class="nav-text">Union-Find</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-Connectivity"><span class="nav-number">1.1.</span> <span class="nav-text">Dynamic Connectivity</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Given-a-set-of-N-objects"><span class="nav-number">1.1.1.</span> <span class="nav-text">Problem: Given a set of N objects</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Modeling-the-connections"><span class="nav-number">1.1.2.</span> <span class="nav-text">Modeling the connections</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Implementing-the-operations"><span class="nav-number">1.1.3.</span> <span class="nav-text">Implementing the operations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Union-Find-API"><span class="nav-number">1.1.4.</span> <span class="nav-text">Union-Find API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Client-to-check-API"><span class="nav-number">1.1.5.</span> <span class="nav-text">Client to check API</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quick-Find-eager-approach"><span class="nav-number">1.2.</span> <span class="nav-text">Quick-Find[eager approach]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-structure"><span class="nav-number">1.2.1.</span> <span class="nav-text">Data structure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Find-operation-is-very-fast"><span class="nav-number">1.2.2.</span> <span class="nav-text">Find operation is very fast</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Union-operation-is-difficult"><span class="nav-number">1.2.3.</span> <span class="nav-text">Union operation is difficult</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Quick-Find-Java-Implementation"><span class="nav-number">1.2.4.</span> <span class="nav-text">Quick-Find: Java Implementation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Quick-Find-is-too-slow"><span class="nav-number">1.2.5.</span> <span class="nav-text">Quick-Find is too slow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Quadratic-algorithms-do-not-scale-with-technology"><span class="nav-number">1.2.6.</span> <span class="nav-text">Quadratic algorithms do not scale with technology</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quick-Union-lazy-approach"><span class="nav-number">1.3.</span> <span class="nav-text">Quick Union [lazy approach]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Quick-Union-Java-Implementation"><span class="nav-number">1.3.1.</span> <span class="nav-text">Quick Union: Java Implementation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Quick-Union-is-also-too-slow"><span class="nav-number">1.3.2.</span> <span class="nav-text">Quick Union is also too slow</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Improvements"><span class="nav-number">1.4.</span> <span class="nav-text">Improvements</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Improvement-1-Weighting"><span class="nav-number">1.4.1.</span> <span class="nav-text">Improvement 1: Weighting</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Weighted-Quick-Union-Java-Implementation"><span class="nav-number">1.4.2.</span> <span class="nav-text">Weighted Quick Union: Java Implementation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Weighted-Quick-Union-Analysis"><span class="nav-number">1.4.3.</span> <span class="nav-text">Weighted Quick Union: Analysis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Improvement-2-Path-compression"><span class="nav-number">1.4.4.</span> <span class="nav-text">Improvement 2: Path compression</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Path-compression-Java-Implementation"><span class="nav-number">1.4.5.</span> <span class="nav-text">Path compression: Java Implementation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Summary"><span class="nav-number">1.5.</span> <span class="nav-text">Summary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Analysis-of-algorithms"><span class="nav-number">2.</span> <span class="nav-text">Analysis of algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-of-algorithms-Introduction"><span class="nav-number">2.1.</span> <span class="nav-text">Analysis of algorithms Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Observations"><span class="nav-number">2.2.</span> <span class="nav-text">Observations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-3-SUM"><span class="nav-number">2.2.1.</span> <span class="nav-text">Example: 3-SUM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Experimental-algorithms"><span class="nav-number">2.2.2.</span> <span class="nav-text">Experimental algorithms</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mathematical-Models"><span class="nav-number">2.3.</span> <span class="nav-text">Mathematical Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Order-of-growth-classifications"><span class="nav-number">2.4.</span> <span class="nav-text">Order-of-growth classifications</span></a></li></ol></li></ol></div>
             
 
           </div>
